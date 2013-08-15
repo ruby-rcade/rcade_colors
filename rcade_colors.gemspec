@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "rcade_colors"
-  spec.version       = "0.0.2"
+  spec.version       = "0.0.3"
   spec.authors       = ["Andrew Havens"]
   spec.email         = ["email@andrewhavens.com"]
   spec.description   = %q{Provides additional CSS Hex value and opacity support for Gosu.}

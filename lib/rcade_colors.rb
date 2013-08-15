@@ -12,12 +12,12 @@ module Rcade
     #   "cabbed"
     #   "#cabbed"
     def self.from_hex(hex)
-      color = Color::RGB.from_html(hex).to_hsl
+      color = ::Color::RGB.from_html(hex).to_hsl
       self.from_hsv(color.hue.to_i, color.s, color.l) # 255, 1.0, 1.0
     end
 
     def self.named(color_name)
-      color = Color::CSS[color_name]
+      color = ::Color::CSS[color_name]
       raise 'Invalid color name' unless color
       self.from_hex(color.html)
     end
