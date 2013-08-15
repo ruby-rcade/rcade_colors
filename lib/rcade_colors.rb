@@ -13,7 +13,7 @@ module Rcade
     #   "#cabbed"
     def self.from_hex(hex)
       color = Color::RGB.from_html(hex).to_hsl
-      Gosu::Color.from_hsv(color.hue.to_i, color.s, color.l) # 255, 1.0, 1.0
+      self.from_hsv(color.hue.to_i, color.s, color.l) # 255, 1.0, 1.0
     end
 
     def self.named(color_name)
@@ -25,7 +25,7 @@ module Rcade
     # opacity should be a float 0.0..1.0
     def opacity(opacity)
       a = alpha * opacity
-      Gosu::Color.from_ahsv(a, hue, saturation, value)
+      self.from_ahsv(a, hue, saturation, value)
     end
 
   end
