@@ -1,6 +1,14 @@
 require 'gosu'
-require 'color'
-require 'color/css'
+
+class Gosu::Color
+  # Provides the ability to adjust the opacity (alpha).
+  # The opacity argument should be a float 0.0..1.0
+  def opacity(opacity)
+    a = alpha * opacity
+    hex_string = "0x%02x%02x%02x%02x" % [(alpha * opacity), red, green, blue]
+    self.class.argb(hex_string.to_i(16))
+  end
+end
 
 module Rcade
   class Color < Gosu::Color
@@ -12,21 +20,20 @@ module Rcade
     #   "#fed"
     #   "cabbed"
     #   "#cabbed"
-    def self.from_hex(hex)
-      color = ::Color::RGB.from_html(hex).to_hsl
-      self.from_hsv(color.hue.to_i, color.s, color.l) # 255, 1.0, 1.0
+    def self.from_hex(string)
+      h = string.scan(/\h/)
+      if h.size == 3
+        h.map! {|v| (v * 2) } # expand to 6 character format
+      end
+      hex_string = "0xff" + h.join # fully opaque
+      self.argb(hex_string.to_i(16))
     end
 
     def self.named(color_name)
+      require 'color/css'
       color = ::Color::CSS[color_name]
       raise 'Invalid color name' unless color
       self.from_hex(color.html)
-    end
-
-    # opacity should be a float 0.0..1.0
-    def opacity(opacity)
-      a = alpha * opacity
-      self.from_ahsv(a, hue, saturation, value)
     end
 
   end

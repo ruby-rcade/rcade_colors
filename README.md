@@ -22,7 +22,7 @@ Or install it yourself as:
 
 Using this gem, you can create a Gosu::Color object using CSS hex values:
 
-    Rcade::Color.from_css('#ff0')
+    Rcade::Color.from_hex('#ff0')
 
 ### CSS color names
 
