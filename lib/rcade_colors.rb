@@ -1,5 +1,6 @@
 require 'gosu'
 require 'color'
+require 'color/css'
 
 module Rcade
   class Color < Gosu::Color
