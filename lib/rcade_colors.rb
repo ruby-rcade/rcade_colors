@@ -4,8 +4,7 @@ class Gosu::Color
   # Provides the ability to adjust the opacity (alpha).
   # The opacity argument should be a float 0.0..1.0
   def opacity(opacity)
-    a = alpha * opacity
-    hex_string = "0x%02x%02x%02x%02x" % [(alpha * opacity), red, green, blue]
+    hex_string = "0x%02x%02x%02x%02x" % [(opacity * 255), red, green, blue]
     self.class.argb(hex_string.to_i(16))
   end
 end
